@@ -17,7 +17,8 @@ is not specified, the MP4 output file will be generated in the same
 directory as the SOURCE file.
 
 FPS: The number of frames per second, which should be between 3 and 10,
-default = 5.```
+default = 5.
+```
 
 ### Security Implications ###
 Webex, in their infinite wisdom, has made these tools dependent on X11. The helper script exports your DISPLAY variable into the container, and runs the container with --net=host and --ipc=host, so the container shares the host network namespace and can access the X11 socket and shared memory. Note that this removes some of the security/isolation of the container so it has much more access to your host than a typical container.
