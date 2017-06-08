@@ -1,4 +1,7 @@
 # webex-video-converter
+Github: https://github.com/cseelye/webex-video-converter
+Docker Hub: https://hub.docker.com/r/cseelye/webex-video-converter/
+
 The WebEx video converter is notoriously difficult to get working on a modern linux distro. This containerizes the tool and gives you a helper script to assist in running it.
 
 For simplicity, the file to be converted must be somewhere under your home directory. The helper script mounts your home directory into the same path in the container - if your home is in /home/cseelye on your host, it will be in /home/cseelye in the container as well.  This means that any paths you use for files will work when passed into the container.
