@@ -4,7 +4,7 @@ The WebEx video converter is notoriously difficult to get working on a modern li
 For simplicity, the file to be converted must be somewhere under your home directory. The helper script mounts your home directory into the same path in the container - if your home is in /home/cseelye on your host, it will be in /home/cseelye in the container as well.  This means that any paths you use for files will work when passed into the container.
 
 ## Usage ##
-The arguments passed to the convert script are passed verbatim to the nbr2mp4 script in the container.
+The arguments passed to the convert script are passed verbatim to the nbr2mp4 script in the container. After cloning this repo, just run the convert script with the same arguments you would use for the nbr2mp4 script.
 
 ```Usage: ./nbr2mp4 SOURCE [MP4_DIRECTORY] [FPS]
 

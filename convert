@@ -1,0 +1,30 @@
+#!/bin/bash
+set -euo pipefail
+
+# Additional options to the docker run command - https://docs.docker.com/engine/reference/commandline/run/
+CONVERT_CONTAINER_RUN_OPTIONS=${CONVERT_CONTAINER_RUN_OPTIONS:-}
+
+# The base docker image to use for converting
+CONVERT_IMAGE_NAME=${CONVERT_IMAGE_NAME:-cseelye/webex-video-converter}
+
+# The name to give to convert container instances
+CONVERT_CONTAINER_NAME="webex-convert-"
+
+# Find any other running containers to give this one a unique name
+index=$(docker container ls --format '{{.Names}}' | grep ${CONVERT_CONTAINER_NAME} | cut -d- -f3 | sort | tail -n1 || echo 0)
+(( index++ )) || true
+
+# Run the container
+docker container run \
+    --interactive \
+    --tty \
+    --rm \
+    --net host \
+    --ipc host \
+    --env DISPLAY \
+    --volume ${HOME}:${HOME} \
+    --hostname ${CONVERT_CONTAINER_NAME}${index} \
+    --name ${CONVERT_CONTAINER_NAME}${index} \
+    ${CONVERT_CONTAINER_RUN_OPTIONS} \
+    ${CONVERT_IMAGE_NAME} \
+    $*
